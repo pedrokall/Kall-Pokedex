@@ -10,9 +10,19 @@ class FavoritePage extends StatefulWidget {
 class _FavoritePageState extends State<FavoritePage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 100,
-      color: Colors.green,
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'Favoritos',
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.w400,
+            fontSize: 36,
+          ),
+        ),
+      ),
+      body: Text('Essa é a lista de seus Pokemons Favoritos\nNúmero de favoritos:'),
+      
     );
   }
 }

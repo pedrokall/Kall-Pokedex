@@ -10,9 +10,30 @@ class ComparatorPage extends StatefulWidget {
 class _ComparatorPageState extends State<ComparatorPage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 100,
-      color: Colors.red,
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'Comparador',
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.w400,
+            fontSize: 36,
+          ),
+        ),
+      ),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color(0xffFF9741),
+              Color(0xffFF9741),
+              Colors.white,
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

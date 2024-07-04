@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:pokedex/common/models/pokemon.dart';
 import 'package:pokedex/features/pokedex/screens/home/pages/widgets/pokemon_item_widget.dart';
@@ -17,6 +19,20 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List<Pokemon> myPokelist = [];
   String buscaNome = '';
+  List<Widget> pokemonWidgets = [
+    Text('Bulbasaur'),
+  ];
+
+  Widget? selectedPokemon;
+
+  _showRandomPokemon() {
+    final random = Random();
+    setState(() {
+      selectedPokemon = pokemonWidgets[random.nextInt(pokemonWidgets.length)];
+    });
+  }
+
+  randomButton() {}
 
   buscaPoke(String busca) {
     myPokelist = widget.list
@@ -98,7 +114,18 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
+              selectedPokemon ?? Text(''),
+              SizedBox(height: 5),
+              SizedBox(height: 10),
             ],
+          ),
+        ),
+        floatingActionButton: Container(
+          width: 111,
+          height: 56,
+          child: FloatingActionButton(
+            onPressed: _showRandomPokemon,
+            child: Container(child: Text('Random')),
           ),
         ),
       ),
