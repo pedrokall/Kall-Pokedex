@@ -1,29 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/common/models/pokemon.dart';
-import 'package:pokedex/features/pokedex/screens/details/container/detail_container.dart';
 import 'package:pokedex/features/pokedex/screens/home/pages/widgets/pokemon_item_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
     super.key,
     required this.list,
-    required this.onItemTap,
   });
 
   final List<Pokemon> list;
-  final Function(String, DetailArguments) onItemTap;
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  int _currentIndex = 0;
-
   List<Pokemon> myPokelist = [];
+  String buscaNome = '';
 
   buscaPoke(String busca) {
-    print(busca);
     myPokelist = widget.list
         .where((pokemon) =>
             pokemon.name.toLowerCase().contains(busca.toLowerCase()))
@@ -37,7 +32,7 @@ class _HomePageState extends State<HomePage> {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
         appBar: AppBar(
-          title: Text(
+          title: const Text(
             'KallDex',
             style: TextStyle(
               color: Colors.black,
@@ -50,7 +45,7 @@ class _HomePageState extends State<HomePage> {
           padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 8,
               ),
               Text(
@@ -61,12 +56,15 @@ class _HomePageState extends State<HomePage> {
                   color: Colors.grey[700],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 16,
               ),
               TextField(
                 onChanged: (busca) {
-                  buscaPoke(busca);
+                  setState(() {
+                    buscaNome = busca;
+                  });
+                  buscaPoke(buscaNome);
                 },
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
@@ -77,12 +75,12 @@ class _HomePageState extends State<HomePage> {
                   prefixIcon: Image.asset('assets/images/search.png'),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 24,
               ),
               Expanded(
                 child: GridView.builder(
-                  itemCount: myPokelist.isNotEmpty
+                  itemCount: myPokelist.isNotEmpty || buscaNome.isNotEmpty
                       ? myPokelist.length
                       : widget.list.length,
                   padding: EdgeInsets.zero,
@@ -92,7 +90,7 @@ class _HomePageState extends State<HomePage> {
                             ? myPokelist[index]
                             : widget.list[index]);
                   },
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     mainAxisExtent: 120,
                     crossAxisCount: 2,
                     crossAxisSpacing: 12,
@@ -102,40 +100,6 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
           ),
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _currentIndex,
-          items: const [
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.home_filled,
-                  color: Colors.black,
-                ),
-                label: "Home"),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.compare_arrows,
-                  color: Colors.black,
-                ),
-                label: "Comparator"),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.quiz_outlined,
-                  color: Colors.black,
-                ),
-                label: 'Quiz'),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.favorite_border,
-                  color: Colors.black,
-                ),
-                label: "Favorites"),
-          ],
-          onTap: (index) {
-            setState(() {
-              _currentIndex = index;
-            });
-          },
         ),
       ),
     );

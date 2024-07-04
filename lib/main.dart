@@ -4,10 +4,12 @@ import 'package:pokedex/common/repository/pokemon_repository.dart';
 import 'package:pokedex/features/pokedex/route.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,7 +21,6 @@ class MyApp extends StatelessWidget {
           repository: PokemonRepository(
             dio: Dio(),
           ),
-        )
-      );
+        ));
   }
 }

@@ -23,7 +23,7 @@ class DetailContainer extends StatelessWidget {
         future: repository.getAllPokemons(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return PoLoading();
+            return const PoLoading();
           }
 
           if (snapshot.connectionState == ConnectionState.done &&

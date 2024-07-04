@@ -21,13 +21,13 @@ class DetailPage extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(top: 32),
                 child: ListView(
+                  scrollDirection: Axis.horizontal,
                   children: list
                       .map((e) => Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(e.name),
                           ))
                       .toList(),
-                  scrollDirection: Axis.horizontal,
                 ),
               ),
             )

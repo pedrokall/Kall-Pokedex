@@ -4,9 +4,9 @@ import 'package:pokedex/common/models/pokemon.dart';
 // import 'package:pokedex/common/repository/poke_busca.dart';
 import 'package:pokedex/common/repository/pokemon_repository.dart';
 import 'package:pokedex/features/pokedex/screens/details/container/detail_container.dart';
+import 'package:pokedex/features/pokedex/screens/home/pages/dashboard_page.dart';
 import 'package:pokedex/features/pokedex/screens/home/pages/home_errors.dart';
 import 'package:pokedex/features/pokedex/screens/home/pages/home_loading.dart';
-import 'package:pokedex/features/pokedex/screens/home/pages/home_page.dart';
 
 class HomeContainer extends StatelessWidget {
   const HomeContainer({
@@ -24,14 +24,14 @@ class HomeContainer extends StatelessWidget {
         future: repository.getAllPokemons(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return HomeLoading();
+            return const HomeLoading();
           }
 
           if (snapshot.connectionState == ConnectionState.done &&
               snapshot.hasData) {
-            return HomePage(
+            return DashBoardPage(
               list: snapshot.data!,
-              onItemTap: onItemTap,
+              // onItemTap: onItemTap,
             );
           }
 

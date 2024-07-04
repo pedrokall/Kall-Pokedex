@@ -36,7 +36,7 @@ class Pokemon {
       case 'Normal':
         return Colors.brown[400];
       case 'Fire':
-        return Color.fromARGB(255, 249, 114, 47);
+        return const Color.fromARGB(255, 249, 114, 47);
       case 'Water':
         return Colors.blue;
       case 'Grass':

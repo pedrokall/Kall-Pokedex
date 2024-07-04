@@ -24,12 +24,12 @@ class TypeWidget extends StatelessWidget {
               'assets/svg/types/Type=$name.svg',
               width: 16,
             ),
-            SizedBox(
+            const SizedBox(
               width: 4,
             ),
             Text(
               name,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w400,
                 fontSize: 10,

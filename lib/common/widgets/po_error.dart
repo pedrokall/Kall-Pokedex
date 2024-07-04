@@ -8,7 +8,7 @@ class PoError extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text(error ?? 'Impossivel carregar os dados'),
+        child: Text(error),
       ),
     );
   }
