@@ -18,6 +18,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int _currentIndex = 0;
+
   List<Pokemon> myPokelist = [];
 
   buscaPoke(String busca) {
@@ -102,11 +104,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         bottomNavigationBar: BottomNavigationBar(
-          unselectedItemColor: Colors.red,
-          unselectedFontSize: 14,
-          unselectedLabelStyle: TextStyle(
-            color: Colors.red,
-          ),
+          currentIndex: _currentIndex,
           items: const [
             BottomNavigationBarItem(
                 icon: Icon(
@@ -133,6 +131,11 @@ class _HomePageState extends State<HomePage> {
                 ),
                 label: "Favorites"),
           ],
+          onTap: (index) {
+            setState(() {
+              _currentIndex = index;
+            });
+          },
         ),
       ),
     );
