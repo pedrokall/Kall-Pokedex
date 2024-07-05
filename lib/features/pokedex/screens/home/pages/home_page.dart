@@ -114,19 +114,18 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              selectedPokemon ?? Text(''),
-              SizedBox(height: 5),
-              SizedBox(height: 10),
+              selectedPokemon ?? const Text(''),
+              const SizedBox(height: 5),
+              const SizedBox(height: 10),
             ],
           ),
         ),
-        floatingActionButton: Container(
-          width: 111,
-          height: 56,
-          child: FloatingActionButton(
-            onPressed: _showRandomPokemon,
-            child: Container(child: Text('Random')),
-          ),
+        floatingActionButton: FloatingActionButton.extended(
+          icon: Image.asset('assets/images/magic_button.png'),
+          backgroundColor: Colors.yellow,
+          foregroundColor: Colors.black,
+          onPressed: _showRandomPokemon,
+          label: const Text('Random'),
         ),
       ),
     );

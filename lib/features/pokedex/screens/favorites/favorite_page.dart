@@ -21,8 +21,27 @@ class _FavoritePageState extends State<FavoritePage> {
           ),
         ),
       ),
-      body: Text('Essa é a lista de seus Pokemons Favoritos\nNúmero de favoritos:'),
-      
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 0,
+            ),
+            Text(
+              'Essa é a lista de seus Pokemons Favoritos\nNúmero de favoritos:',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+                color: Colors.grey[700],
+              ),
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
