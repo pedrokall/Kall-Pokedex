@@ -30,8 +30,7 @@ class HomeContainer extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.done &&
               snapshot.hasData) {
             return DashBoardPage(
-              list: snapshot.data!,
-              // onItemTap: onItemTap,
+              list: snapshot.data!, onItemtap: onItemTap,
             );
           }
 

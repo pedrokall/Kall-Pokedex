@@ -5,17 +5,15 @@ import 'package:pokedex/features/pokedex/screens/home/pages/widgets/type_widget.
 class PokemonItemWidget extends StatelessWidget {
   const PokemonItemWidget({
     super.key,
-    required this.pokemon,
+    required this.pokemon
   });
   final Pokemon pokemon;
-  // final Function(String, DetailArguments) onTap;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 152,
       height: 100,
-      // padding: EdgeInsets.all(16),
       margin: EdgeInsets.zero,
       decoration: BoxDecoration(
           color: pokemon.baseColor!.withOpacity(0.8),

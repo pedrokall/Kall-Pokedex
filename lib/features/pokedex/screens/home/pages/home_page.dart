@@ -1,16 +1,19 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:pokedex/common/models/pokemon.dart';
+import 'package:pokedex/features/pokedex/screens/details/container/detail_container.dart';
+import 'package:pokedex/features/pokedex/screens/details/pages/card_detail.dart';
 import 'package:pokedex/features/pokedex/screens/home/pages/widgets/pokemon_item_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
     super.key,
     required this.list,
+    required this.onItemtap,
   });
 
   final List<Pokemon> list;
+  final Function(String, DetailArguments) onItemtap;
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -19,9 +22,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List<Pokemon> myPokelist = [];
   String buscaNome = '';
-  List<Widget> pokemonWidgets = [
-    Text('Bulbasaur'),
-  ];
+  List<Widget> pokemonWidgets = [];
 
   Widget? selectedPokemon;
 
@@ -101,10 +102,23 @@ class _HomePageState extends State<HomePage> {
                       : widget.list.length,
                   padding: EdgeInsets.zero,
                   itemBuilder: (BuildContext context, int index) {
-                    return PokemonItemWidget(
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => CardDetail(
+                                      pokemon: myPokelist.isNotEmpty
+                                          ? myPokelist[index]
+                                          : widget.list[index],
+                                    )));
+                      },
+                      child: PokemonItemWidget(
                         pokemon: myPokelist.isNotEmpty
                             ? myPokelist[index]
-                            : widget.list[index]);
+                            : widget.list[index],
+                      ),
+                    );
                   },
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     mainAxisExtent: 120,
